@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evo-lm"
+version = "0.1.0"
+description = "Evolutionary hybrid LM for modern Chinese dialogue; ROCm-friendly AMD teaching stack"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "evo-lm contributors" }]
+dependencies = [
+  "torch>=2.2",
+  "numpy>=1.24",
+  "pyyaml>=6.0",
+  "tqdm>=4.66",
+  "sentencepiece>=0.2.0",
+  "regex>=2023.0",
+  "wgpu>=0.31",
+]
+
+[project.optional-dependencies]
+vulkan = ["vulkan>=1.3.275", "wgpu>=0.31"]
+dev = ["pytest>=7.4", "ruff>=0.4"]
+
+[project.scripts]
+evo-prepare = "evo_lm.cli:prepare"
+evo-evolve = "evo_lm.cli:evolve"
+evo-train = "evo_lm.cli:train"
+evo-chat = "evo_lm.cli:chat"
+evo-export-latex = "evo_lm.cli:export_latex"
+evo-build-modern = "evo_lm.data.modern:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

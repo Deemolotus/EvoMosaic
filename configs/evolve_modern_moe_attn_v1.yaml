@@ -1,0 +1,45 @@
+# Full (non-smoke) evolution search: modern mix + MoE + forced attention + task fitness.
+device: rocm
+allow_cpu: false
+evolve_on_host: false
+fitness: corpus
+fitness_seed: 4608
+fitness_repeats: 1
+moe_aux_coef: 0.01
+kw_weight: 0.35
+scramble_weight: 0.45
+max_composition_eval: 16
+max_scramble_eval: 16
+
+evolve:
+  population: 8
+  generations: 8
+  elite: 2
+  tournament_k: 3
+  mutate_rate: 0.85
+  crossover_rate: 0.55
+  max_params: 40000000
+  d_model: 256
+  vocab_size: 5292
+  max_seq_len: 160
+  seed: 4608
+  out_dir: runs/train_modern_moe_attn_v1
+  min_local_attn: 1
+  min_moe: 1
+
+data:
+  texts:
+    - data/processed/modern_train_v3.txt
+  val_texts:
+    - data/processed/modern_val_v3.txt
+  tokenizer: data/processed/tokenizer_modern_v3.json
+  rebuild_tokenizer: false
+  max_vocab: 8000
+  split_seed: 3307
+  pack_mode: dialogue
+  assistant_loss_only: true
+
+seq_len: 128
+batch_size: 6
+train_steps: 30
+lr: 0.001
