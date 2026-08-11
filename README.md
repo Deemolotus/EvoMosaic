@@ -38,18 +38,26 @@ Tests: `pytest`
 ## Layout
 
 ```text
-evo/
-├── src/evo_lm/                 # evolve + hybrid LM + modern data
-├── baselines/transformer/      # fixed GPT-style ~7M comparison arm
-├── configs/                    # evolve / train YAMLs (final path only)
-├── docs/                       # bilingual tutorials
-├── scripts/                    # ROCm setup, evolve-then-train
-├── data/processed/             # modern_v3 train/val + tokenizer
-├── runs/                       # final hybrid + Transformer best.pt
-└── tests/
+EvoMosaic/
+├── src/evo_lm/                 # Core implementation: evolution, hybrid LM, training, and chat
+├── baselines/transformer/      # ~7M parameter Transformer baseline model
+├── configs/                    # Architecture-search and training configurations
+├── scripts/                    # ROCm setup, evolution, training, and utility scripts
+├── docs/                       # Bilingual tutorials and project documentation
+├── tests/                      # Tests
+├── data/processed/             # Processed datasets and tokenizer (download separately)
+└── runs/                       # Checkpoints and experiment results (download separately)
 ```
 
 Outer loop: population of `Genome` stacks (SSM / GRU / local attention / conv / MoE / MLP) with a hard rule of ≥1 `local_attn` and ≥1 `moe`. Fitness = assistant-answer val NLL + composition metrics − size. Inner loop: dialogue packing, loss only on tokens after `助手:`.
+
+## Data and Run Results
+
+The `data/` and `runs/` directories are not included directly in this repository due to their size.
+
+You can download both directories as a ZIP archive from [Google Drive](https://drive.google.com/file/d/11hBatLUrNLL3Mzn_fXTaJ7zoB8nsTCpq/view?usp=sharing).
+
+After downloading, extract the archive into the project root.
 
 ## Sample results
 
