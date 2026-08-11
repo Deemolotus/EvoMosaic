@@ -51,6 +51,14 @@ evo/
 
 外环：`Genome` 块序列（SSM / GRU / 局部注意力 / 卷积 / MoE / MLP），硬约束 ≥1 个 `local_attn` 与 ≥1 个 `moe`。适应度 = 助手答案验证 NLL + 组句指标 − 尺寸。内环：对话打包，损失只算 `助手:` 之后。
 
+## 数据与运行结果
+
+由于文件体积较大，`data/` 和 `runs/` 目录未直接包含在本仓库中。
+
+你可以通过 [Google Drive](https://drive.google.com/file/d/11hBatLUrNLL3Mzn_fXTaJ7zoB8nsTCpq/view?usp=sharing) 下载包含这两个目录的 ZIP 压缩包。
+
+下载完成后，请将压缩包解压到项目根目录。
+
 ## 部分结果
 
 同一协议（约 7M、8000 步、modern_v3、助手答案损失、ROCm）：
